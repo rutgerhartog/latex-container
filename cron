@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ "${PLATFORM_TYPE}"=="local" ]; then
+  cd ${PLATFORM_LOC}
+  while true; do
+    for item in $(ls); do
+      # Check if PDF exists; only compile if there is no PDF
+      if [[ ! -f ${item}/main.pdf ]]; then
+        pdflatex ${item}/main.tex && pythontex3 ${item}/main.tex && pdflatex ${item}/main.tex; done
+        rm -rf ${item}/pythontex-*/ ${item}/*pycache* ${item}/main.pytxcode ${item}/*.{aux,fls,out,pyc}
+      fi
+    sleep 60
+  done
+fi
