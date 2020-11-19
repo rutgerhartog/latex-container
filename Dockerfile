@@ -1,13 +1,10 @@
-FROM alpine:latest
+FROM alpine
 
-ENV PLATFORM_TYPE="local"
-ENV PLATFORM_LOC="/latex"
-
-COPY cron /usr/local/bin/cron
-RUN chmod +x /usr/local/bin/cron
+COPY run.sh /usr/local/bin/run.sh
+RUN chmod +x /usr/local/bin/run.sh
 
 RUN apk add -U texlive-full
 
 USER 1000
 
-CMD ["cron"]
+ENTRYPOINT ["run.sh"]
