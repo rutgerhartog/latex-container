@@ -1,5 +1,8 @@
 FROM alpine
 
+ENV PLUGIN_COMPILER pdflatex
+ENV PLUGIN_FILENAME main.tex
+
 COPY run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
 
